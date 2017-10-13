@@ -5,6 +5,7 @@ import java.io.FileReader;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -71,7 +72,8 @@ public class CSV {
     	return parsedLine;
     }
 
-    public ArrayList<String> agruparColuna (String coluna) {
+    public Hashtable<String, Integer> agruparColuna (String coluna) {
+        Hashtable<String, Integer> lista = new Hashtable<String, Integer>();
         ArrayList<String> valores = new ArrayList<String>();
         ArrayList<Integer> valoresQtds = new ArrayList<Integer>();
 
@@ -88,10 +90,11 @@ public class CSV {
         }
 
         for (int i = 0; i < valores.size(); i++) {
-            valores.set(i, valores.get(i) + ": " + valoresQtds.get(i));
+            lista.put(valores.get(i), valoresQtds.get(i));
+            // valores.set(i, valores.get(i) + ": " + valoresQtds.get(i));
         }
 
-        return valores;
+        return lista;
     }
 
     public String[] getAtributes () {
