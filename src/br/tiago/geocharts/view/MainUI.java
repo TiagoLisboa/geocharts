@@ -11,7 +11,8 @@ import java.io.File;
 public class MainUI {
     public static void main(String[] args) {
     	Scanner sc = new Scanner(System.in);
-    	CSVController csvc = new CSVController("csv/listings.csv");
+        CSVController csvc = new CSVController("csv/listingsAthens.csv");
+    	// CSVController csvc = new CSVController("csv/listings.csv");
         CSVController info = new CSVController(".env.csv");
         FBController fbc = null;
 
@@ -46,7 +47,8 @@ public class MainUI {
                     System.out.println("--------------------------------------------------");
                     System.out.println("Digite o nome da coluna: (neighbourhood)");
                     nome = sc.next();
-                    System.out.println("--------------------------------------------------");
+                    System.out.println("
+                        --------------------------------------------------");
                     imprimirAtributoPorGrupos(csvc, nome);
                     break;
                 case 5:

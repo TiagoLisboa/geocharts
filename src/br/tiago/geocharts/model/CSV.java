@@ -29,7 +29,7 @@ public class CSV {
 			br = new BufferedReader(new FileReader(csvFile));
 			while ((line = br.readLine()) != null) {
 				if (l) {
-					ArrayList<String> parsedLine = parseLine(line);
+					ArrayList<String> parsedLine = parseLine(line, br);
 					lines.add(parsedLine);
 				} else {
 					atributes = new String[line.split(",").length];
@@ -44,7 +44,7 @@ public class CSV {
 		}
     }
 
-    private static ArrayList<String> parseLine (String csvLine) {
+    private static ArrayList<String> parseLine (String csvLine, BufferedReader br) {
     	char line[] = csvLine.toCharArray();
     	char separator = ',';
     	char blockQuote = '\"';
@@ -63,8 +63,18 @@ public class CSV {
     		} else {
     			if (line[i] == blockQuote) {
     				inQuotes = !inQuotes;
-    			} else { // remove else to include " in the string
+    			} else { // remove this else to include " in the string
     				current += line[i];
+                    if (i == line.length-1) { // if reach lineend within blockQuotes read next line and resets loop
+                        try {
+                            csvLine = br.readLine();
+                            line = csvLine.toCharArray();
+                            i = -1;
+                            current += '\n';
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
     			}
     		}
     	}
