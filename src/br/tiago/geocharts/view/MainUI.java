@@ -1,15 +1,18 @@
 package br.tiago.geocharts.view;
 
 import br.tiago.geocharts.controller.CSVController;
+import br.tiago.geocharts.controller.FBController;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.io.File;
 
 public class MainUI {
     public static void main(String[] args) {
     	Scanner sc = new Scanner(System.in);
     	CSVController csvc = new CSVController("csv/listings.csv");
+        FBController fbc = new FBController("362474497514237", "9a02d8af4343de176ab79f935ba49eff", "EAACEdEose0cBAP7wBHB8ZCRgVGdZAVZC2ZA0fZALq4dwmlNdzIBBHZAEw0xheo9btYfn7mkTO2T8HrlCZAZB5ZBfcurh6WQkCmjZCHuugaOz1Xjda3NihuAl3Dt2LKL5gJfALFDsRUCcjlEAINNCRsaVdkQdhIKTpn4I4ksxSiwRUdHapYvqAAGhGUks3rZAknZA0175oF8KkPwYwgZDZD");
         String nome;
     	boolean loop = true;
 
@@ -47,6 +50,18 @@ public class MainUI {
                     System.out.println("--------------------------------------------------");
                     imprimirGrafico(csvc, nome);
                     break;
+                case 6:
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("Digite o nome da coluna: (neighbourhood)");
+                    nome = sc.next();
+                    System.out.println("Digite o id do usuario: (100001383083662 | lucas: 100001523343046)");
+                    String usr = sc.next();
+                    System.out.println("Digite uma mensagem: ");
+                    sc.nextLine();
+                    String msg = sc.nextLine();
+                    System.out.println("--------------------------------------------------");
+                    publicarGrafico(csvc, fbc, nome, usr, msg);
+                    break;
     		}
     	}
     	
@@ -59,6 +74,7 @@ public class MainUI {
     	System.out.println("3 - Listar Dataset");
         System.out.println("4 - Examinar Coluna");
         System.out.println("5 - Criar Grafico");
+        System.out.println("6 - Postar Grafico");
     }
 
     private static void imprimirAtributoPorGrupos (CSVController csvc, String nome) {
@@ -96,5 +112,10 @@ public class MainUI {
 
     private static void imprimirGrafico (CSVController csvc, String nome) {
         csvc.barChartCreator(nome);
+    }
+
+    private static void publicarGrafico (CSVController csvc, FBController fbc, String nome, String usr, String msg) {
+        File chart = csvc.barChartCreator(nome);
+        fbc.publish(msg, chart, usr);
     }
 }

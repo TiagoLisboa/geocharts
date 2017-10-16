@@ -33,7 +33,7 @@ public class CSVController {
     	return csv.getLines();
     }
 
-    public void barChartCreator (String nome) {
+    public File barChartCreator (String nome) {
     	Hashtable<String, Integer> grupos = this.agruparColuna(nome);
     	Iterator<String> itr = grupos.keySet().iterator();
     	String str;
@@ -56,9 +56,12 @@ public class CSVController {
     	try {
 			File BarChart = new File(nome+".jpg");
 	    	ChartUtilities.saveChartAsJPEG(BarChart, barChart, 640, 480);
+            return BarChart;
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
+
+        return null;
 
     }
 }
