@@ -68,6 +68,7 @@ public class CSV {
     			}
     		}
     	}
+        parsedLine.add(current);
 
     	return parsedLine;
     }

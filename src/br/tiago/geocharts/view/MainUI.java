@@ -12,7 +12,13 @@ public class MainUI {
     public static void main(String[] args) {
     	Scanner sc = new Scanner(System.in);
     	CSVController csvc = new CSVController("csv/listings.csv");
-        FBController fbc = new FBController("362474497514237", "9a02d8af4343de176ab79f935ba49eff", "EAACEdEose0cBAP7wBHB8ZCRgVGdZAVZC2ZA0fZALq4dwmlNdzIBBHZAEw0xheo9btYfn7mkTO2T8HrlCZAZB5ZBfcurh6WQkCmjZCHuugaOz1Xjda3NihuAl3Dt2LKL5gJfALFDsRUCcjlEAINNCRsaVdkQdhIKTpn4I4ksxSiwRUdHapYvqAAGhGUks3rZAknZA0175oF8KkPwYwgZDZD");
+        CSVController info = new CSVController(".env.csv");
+        FBController fbc = null;
+
+        for (ArrayList<String> s : info.getLines()) {
+            fbc = new FBController(s.get(0), s.get(1), s.get(2));
+        }
+
         String nome;
     	boolean loop = true;
 
