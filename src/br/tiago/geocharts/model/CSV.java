@@ -1,21 +1,20 @@
 package br.tiago.geocharts.model;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
+import java.util.List;
 
 public class CSV {
-	private String csvFile;
+	private FileReader csvFile;
 	private String atributes[];
 	private ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 
-    public CSV(String csvFile) {
+    public CSV(FileReader csvFile) {
     	this.csvFile = csvFile;
     	atributes = new String[1];
 
@@ -26,7 +25,7 @@ public class CSV {
     	boolean l = false;
 
     	try {
-			br = new BufferedReader(new FileReader(csvFile));
+			br = new BufferedReader(csvFile);
 			while ((line = br.readLine()) != null) {
 				if (l) {
 					ArrayList<String> parsedLine = parseLine(line, br);
