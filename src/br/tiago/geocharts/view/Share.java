@@ -14,10 +14,8 @@ import javax.swing.JTextField;
 
 public class Share {
     public static void openShareDialog (JFrame janela, FBController fbc, JPanel graph) {
-    	final FBController FBC = fbc;
     	JPanel mainPanel = new JPanel();
 
-    	JPanel labelPanel = new JPanel();
     	JPanel textPanel = new JPanel();
     	JPanel graphPanel = new JPanel();
     	JPanel btnsPanel = new JPanel();

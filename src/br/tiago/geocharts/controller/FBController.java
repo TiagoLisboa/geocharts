@@ -2,15 +2,12 @@ package br.tiago.geocharts.controller;
 
 import java.io.File;
 
-import facebook4j.FacebookFactory;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
-import facebook4j.PostUpdate;
+import facebook4j.FacebookFactory;
+import facebook4j.Media;
 import facebook4j.PhotoUpdate;
 import facebook4j.TagUpdate;
-import facebook4j.Media;
-import facebook4j.TaggableFriend;
-import facebook4j.ResponseList;
 import facebook4j.auth.AccessToken;
 
 public class FBController {
